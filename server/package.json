@@ -4,9 +4,8 @@
   "description": "Learning node.js",
   "main": "node.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "start:prod": "cross-env NODE_ENV=production nodemon server.js",
-    "start:global": "node server.js",
     "debug": "ndb server.js"
   },
   "author": "Fatih Furkan Kocabıyık",
