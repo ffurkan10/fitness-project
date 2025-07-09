@@ -41,6 +41,13 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    status: "success",
+    message: "Fitness API is running smoothly!"
+  });
+})
+
 app.use("/api/fitness/v1/users", userRouter);
 app.use("/api/fitness/v1/panelUser", adminUserRouter);
 app.use("/api/fitness/v1/membership", membershipRouter);
