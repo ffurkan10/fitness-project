@@ -10,7 +10,7 @@ module.exports = {
       current: 'currentColor',
       'white': '#ffffff',
       'yellow': '#FFB732',
-      'background': '#FAFAFA;',
+      'background': '#FAFAFA',
       'black': '#000',
       'dark': '#3C3E40',
       'light': '#6E7073',
@@ -22,7 +22,7 @@ module.exports = {
     },
     boxShadow: {
       "card": "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
-      "sidebar": "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+      "sidebar": "rgba(0, 0, 0, 0.24) 0px 3px 8px",
     }
   },
   plugins: [],
