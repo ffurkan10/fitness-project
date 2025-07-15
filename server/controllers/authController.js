@@ -34,7 +34,6 @@ exports.login = catchAsync(async (req, res, next) => {
     const { phoneNumber, password } = req.body;
 
     console.log(`Phone Number: ${phoneNumber}, Password: ${password}`);
-    
 
     if(!phoneNumber || !password) {
         return next(new AppError('Please provide phoneNumber and password', 400));
@@ -56,7 +55,9 @@ exports.login = catchAsync(async (req, res, next) => {
 
 exports.userInformation = catchAsync(async (req, res, next) => {
     
-    const user = await User.findById(req.params.id).select("-password").populate("workouts");
+    console.log(`User ID: ${req.user.id}`);
+    
+    const user = await User.findById(req.user.id).select("-password").populate("workouts");
     if(!user) {
         return next(new AppError('No user found with that ID', 404));
     }
@@ -133,38 +134,23 @@ exports.getGenderStats = catchAsync(async (req, res, next) => {
 
 
 exports.protect = catchAsync(async (req, res, next) => {
-    //? 1) Getting token and checking if it's there
     let token;
 
-    //? Check if the authorization header exists and starts with "Bearer "
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-        token = req.headers.authorization.split(' ')[1]; //? Extract the token after 'Bearer'
+        token = req.headers.authorization.split(' ')[1]; 
     }
 
     if (!token) {
         return next(new AppError('You are not logged in! Please log in to get access.', 401));
     }
 
-    //? 2) Verify token
-    const decoded = await jwt.verify(token, process.env.JWT_SECRET); // Verify the token
+    const decoded = await jwt.verify(token, process.env.JWT_SECRET);
 
-    //? 3) Check if user still exists
-    const currentUser = await User.findById(decoded.id); //? Find the user by the ID decoded from the token
+    const currentUser = await User.findById(decoded.id); 
     if (!currentUser) {
         return next(new AppError('The user belonging to this token does no longer exist.', 401));
     }
 
-    req.user = currentUser; //? Attach the user to the request object for further use in the application
+    req.user = currentUser; 
     next(); 
 });
-
-exports.restrictTo = (...roles) => {
-    return (req, res, next) => {
-        //? roles ['admin', 'lead-guide']. role='user'
-        
-        if(!roles.includes(req.user.role)) {
-            return next(new AppError('You do not have permission to perform this action', 403));
-        }
-        next()
-    }
-}
