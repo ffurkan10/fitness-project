@@ -13,7 +13,7 @@ const initialState = {
 
 export const login = createAsyncThunk("auth/login", async(body, thunkAPI) => {
     try{
-        const { data } = await axios.post(`/api/fitness/v1/panelUser/adminLogin`, body);
+        const { data } = await axios.post(`https://fitness-project-pswv.onrender.com/api/fitness/v1/panelUser/adminLogin`, body);
         console.log("logindata",data);
 
         if(data.status === "success"){

@@ -33,6 +33,9 @@ exports.signUp = catchAsync(async (req, res, next) => {
 exports.login = catchAsync(async (req, res, next) => {
     const { phoneNumber, password } = req.body;
 
+    console.log(`Phone Number: ${phoneNumber}, Password: ${password}`);
+    
+
     if(!phoneNumber || !password) {
         return next(new AppError('Please provide phoneNumber and password', 400));
     }
