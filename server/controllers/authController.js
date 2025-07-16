@@ -57,7 +57,7 @@ exports.userInformation = catchAsync(async (req, res, next) => {
     
     console.log(`User ID: ${req.user.id}`);
     
-    const user = await User.findById(req.user.id).select("-password").populate("workouts");
+    const user = await User.findById(req.user.id).select("-password").populate("workouts").populate("nutrition", "totalKcal");
     if(!user) {
         return next(new AppError('No user found with that ID', 404));
     }
