@@ -1,37 +1,49 @@
+// socket.js
 const socketIo = require('socket.io');
-let io; // dışa aktarılacak io nesnesi
+const jwt = require('jsonwebtoken');
+let io;
 
 function initSocket(server) {
   io = socketIo(server, {
     cors: {
-      origin: "*", // veya güvenli olarak: "https://senin-site.com"
-      methods: ["GET", "POST"]
+      origin: "*", // production'da site adresini belirt
+      methods: ["GET", "POST"],
+    },
+  });
+
+  // JWT ile kimlik doğrulama
+  io.use((socket, next) => {
+    const token = socket.handshake.auth?.token;
+    if (!token) return next(new Error("Token gerekli"));
+
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      socket.userId = decoded.id;
+      next();
+    } catch (err) {
+      next(new Error("Geçersiz token"));
     }
   });
 
-  io.on('connection', (socket) => {
-    console.log(`🔌 Yeni bağlantı: ${socket.id}`);
+  io.on("connection", (socket) => {
+    console.log(`🔌 Yeni bağlantı: ${socket.id}, Kullanıcı: ${socket.userId}`);
 
-    socket.on("register", (userId) => {
-      console.log(`📦 Kullanıcı ${userId} odaya katıldı`);
-      socket.join(userId); // Her kullanıcı kendi ID'siyle odaya katılır
-    });
+    socket.join(socket.userId); // Kullanıcıyı kendi odasına kat
 
-    socket.on('disconnect', () => {
+    socket.on("disconnect", () => {
       console.log(`❌ Bağlantı koptu: ${socket.id}`);
     });
   });
 }
 
-// io nesnesine erişim için getter
 function getIO() {
   if (!io) {
-    throw new Error("Socket.io henüz başlatılmadı!");
+    throw new Error("Socket.io başlatılmadı!");
   }
   return io;
 }
 
 module.exports = {
   initSocket,
-  getIO
+  getIO,
 };
