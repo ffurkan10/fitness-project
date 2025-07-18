@@ -16,12 +16,15 @@ exports.createNotification = catchAsync(async (req, res, next) => {
     const io = getIO();
 
     if (isGlobal) {
+        console.log(`Global notification sent: ${title}`);
+        
         io.emit("newNotification", {
             title,
             message,
             isGlobal: true
         });
     } else {
+        console.log(`Notification sent to user ${userId}: ${title}`);
         io.to(userId).emit("newNotification", {
             title,
             message,
