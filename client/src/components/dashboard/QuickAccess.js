@@ -15,8 +15,6 @@ const QuickAccess = () => {
     dispatch(fetchStats())
   },[])
 
-  console.log("Last Month Stats:", lastMonthStats);
-  
 
   return (
     <section className='w-full flex items-center flex-col justify-between '>

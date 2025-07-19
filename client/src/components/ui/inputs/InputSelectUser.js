@@ -30,10 +30,6 @@ const InputSelectUser = ({data, setData, name, width, labelText, initialOptions}
         setOptions(filteredOptions);
     }
 
-    console.log("1:",name, "2:",activeSelect);
-    
-
-
   return (
     <div onClick={(e) => e.stopPropagation()} className="flex flex-col gap-2 relative" style={{width: width || '100%'}}>
         <label htmlFor={name} className="text-dark text-sm font-semibold mr-2">{labelText}</label>

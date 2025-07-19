@@ -30,8 +30,6 @@ const UserOptionModal = () => {
         }
     }, [dispatch, location.pathname, modalLocation]);
 
-    console.log("selectedUser",selectedUser);
-    
 
   return (
     <div onClick={() => dispatch(showModal(null))} className="fixed top-0 right-0 bottom-0 left-0 bg-modalBg flex justify-center items-center z-[9999] shadow-lg">

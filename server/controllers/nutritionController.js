@@ -28,7 +28,6 @@ exports.createNutrition = catchAsync(async (req, res, next) => {
 });
 
 exports.getUserNutrition = async (req, res, next) => {
-    console.log(req);
     
     const user = await User.findById(req.params.id).populate('nutrition');
     res.status(200).json({

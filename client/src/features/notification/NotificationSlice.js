@@ -12,7 +12,6 @@ export const getAllNotifications = createAsyncThunk("notification/getAllNotifica
     try{
 
         const { data } = await axiosInstance.get(`/notification/all`);
-        console.log(data);
         
         return data.data.notifications;
     }

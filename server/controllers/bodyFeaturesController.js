@@ -28,7 +28,6 @@ exports.createBodyFeatures = catchAsync(async (req, res, next) => {
 });
 
 exports.getUserBodyFeatures = async (req, res, next) => {
-    console.log(req);
     
     const user = await User.findById(req.params.id).populate('bodyFeatures');
     res.status(200).json({

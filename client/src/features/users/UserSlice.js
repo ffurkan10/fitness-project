@@ -13,7 +13,6 @@ const initialState = {
 export const getAllUsers = createAsyncThunk("user/getAllUsers", async({name}, thunkAPI) => {
     try{
         const { data } = await axiosInstance.get(`/users?name=${name || ""}`);
-        console.log("users",data);
         
         return data.data.users;
     }
@@ -25,10 +24,8 @@ export const getAllUsers = createAsyncThunk("user/getAllUsers", async({name}, th
 
 export const addNewUser = createAsyncThunk("user/addNewUser", async(body, thunkAPI) => {
     try{
-        console.log(body);
         
         const { data } = await axiosInstance.post(`/users/signup`, body);
-        console.log("users",data);
 
         if(data.status === "success"){
             thunkAPI.dispatch(showModal("result"));
@@ -45,10 +42,8 @@ export const addNewUser = createAsyncThunk("user/addNewUser", async(body, thunkA
 
 export const deleteUser = createAsyncThunk("user/deleteUser", async(id, thunkAPI) => {
     try{
-        console.log(id);
         
         const { data } = await axiosInstance.delete(`/users/${id}`);
-        console.log("users",data);
 
         if(data.status === "success"){
             thunkAPI.dispatch(showModal("result"));
@@ -66,7 +61,6 @@ export const deleteUser = createAsyncThunk("user/deleteUser", async(id, thunkAPI
 export const fetchGenderStats = createAsyncThunk("stats/fetchGenderStats", async() => {
     try{
         const { data } = await axiosInstance.get(`/users/stats/gender`);
-        console.log(data);
         
         return data.data;
     }

@@ -85,7 +85,6 @@ const MembershipUpdateModal = () => {
             startDate: data.startDate,
             endDate: data.endDate,
         }
-        console.log("Üyelik Bilgileri:", membershipData);
         dispatch(updateMembership(membershipData));
         
     }

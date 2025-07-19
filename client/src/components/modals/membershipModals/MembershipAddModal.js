@@ -67,7 +67,6 @@ const MembershipAddModal = () => {
             startDate: data.startDate,
             endDate: data.endDate,
         }
-        console.log("Üyelik Bilgileri:", membershipData);
         dispatch(createMembership(membershipData));
         
     }

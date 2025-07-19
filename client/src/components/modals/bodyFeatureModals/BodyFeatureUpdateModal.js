@@ -32,8 +32,6 @@ const BodyFeatureUpdateModal = () => {
       dispatch(getUserBody(selectedUser?._id));
     }, [])
 
-    console.log(userBody);
-    
     useEffect(() => {
       if (userBody) {
         setData({

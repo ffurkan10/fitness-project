@@ -6,8 +6,6 @@ const User = require("../models/userModel")
 exports.createMembership = catchAsync(async (req, res, next) => {
     const { userId, ...others } = req.body;
 
-    console.log("Membership creation request body:", req.body);
-
     const user = await User.findById(userId);
     if (!user) {
         return next(new AppError('Belirtilen kullanıcı bulunamadı.', 404));
@@ -29,7 +27,6 @@ exports.createMembership = catchAsync(async (req, res, next) => {
 });
 
 exports.getUserMembership = async (req, res, next) => {
-    console.log(req);
     
     const user = await User.findById(req.params.id).populate('membership');
     res.status(200).json({
