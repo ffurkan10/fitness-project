@@ -58,11 +58,11 @@ const takeMonthlyUserSnapshot = async () => {
 
 
 //! Her ayın 1'inde 00:05'te çalışır
-// cron.schedule('5 0 1 * *', takeMonthlyUserSnapshot);
+cron.schedule('5 0 1 * *', takeMonthlyUserSnapshot);
 //! Her gün saat 00:05'te çalışır
 // cron.schedule('5 0 * * *', takeMonthlyUserSnapshot);
 //! her dakika çalışır (test için)
-cron.schedule('* * * * *', takeMonthlyUserSnapshot); 
+// cron.schedule('* * * * *', takeMonthlyUserSnapshot); 
 
 
 exports.getMonthlyStats = catchAsync(async (req, res, next) => {

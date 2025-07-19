@@ -11,6 +11,9 @@ exports.protectUserOrAdmin = catchAsync(async (req, res, next) => {
     token = req.headers.authorization.split(" ")[1];
   }
 
+  console.log(`Token received: ${token}`);
+  
+
   if (!token) {
     return next(new AppError("Giriş yapmalısınız!", 401));
   }

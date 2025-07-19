@@ -86,6 +86,9 @@ exports.markNotificationAsRead = catchAsync(async (req, res, next) => {
     const userId = req.user.id;
     const notificationId = req.params.id;
 
+    console.log(`Marking notification ${notificationId} as read for user ${userId}`);
+    
+
     const notification = await Notification.findById(notificationId);
     if (!notification) {
         return next(new AppError('Bildirim bulunamadı.', 404));
