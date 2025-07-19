@@ -12,17 +12,22 @@ function initSocket(server) {
   });
 
   // JWT ile kimlik doğrulama
-  io.use((socket, next) => {
-    const token = socket.handshake.auth?.token;
-    if (!token) return next(new Error("Token gerekli"));
+  // io.use((socket, next) => {
+  //   const token = socket.handshake.auth?.token;
+  //   if (!token) return next(new Error("Token gerekli"));
 
-    try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      socket.userId = decoded.id;
-      next();
-    } catch (err) {
-      next(new Error("Geçersiz token"));
-    }
+  //   try {
+  //     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  //     socket.userId = decoded.id;
+  //     next();
+  //   } catch (err) {
+  //     next(new Error("Geçersiz token"));
+  //   }
+  // });
+
+  io.use((socket, next) => {
+    socket.userId = "686a5782a54ae4cd24513c96"; // sabit bir ID
+    next();
   });
 
   io.on("connection", (socket) => {
