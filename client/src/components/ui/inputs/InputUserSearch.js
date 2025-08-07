@@ -13,7 +13,7 @@ const InputUserSearch = ({data, setData, name, width, labelText}) => {
             value={data}
             onChange={setData}
             placeholder='İsme Göre Ara'
-            className="border border-light bg-cardBg backdrop-blur-[20px] pl-10 rounded-lg h-[40px] w-[300px] outline-none text-md font-sm placeholder:text-black placeholder:text-md placeholder:font-sm"
+            className="border border-light bg-cardBg backdrop-blur-[20px] pl-10 rounded-lg h-[40px] w-[300px] outline-none text-md font-sm placeholder:text-black placeholder:text-sm placeholder:font-sm"
         />
     </div>
   )
