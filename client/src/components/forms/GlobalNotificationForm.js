@@ -37,7 +37,9 @@ const GlobalNotificationForm = () => {
     <div className='flex flex-col gap-4 w-full max-w-2xl mt-10'>
         <InputText data={data.title} setData={(e) => handleInputChange(e)} name={"title"} labelText={"Bildirim Başlığı"} width={"100%"} />
         <InputTextarea data={data.content} setData={(e) => handleInputChange(e)} name={"content"} labelText={"Bildirim İçeriği"} width={"100%"} />
-        <Button text={"Gönder"} width={"200px"} handleClick={handleSubmit} />
+        <div className='flex justify-end w-full'>
+            <Button text={"Gönder"} width={"200px"} handleClick={handleSubmit} />
+        </div>
     </div>
   )
 }

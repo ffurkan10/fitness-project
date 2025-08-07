@@ -14,7 +14,7 @@ const InputPhone = ({data, setData, name, width, labelText}) => {
             inputStyle={{
                 width: "100%",  // iç input'a full genişlik ver
                 borderRadius: "0.5rem",
-                borderColor: "#1e1e1e",
+                borderColor: "#E6E6E6",
                 borderWidth: "1px",
                 padding: "0.5rem",
             }}

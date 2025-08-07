@@ -2,12 +2,12 @@ import React from 'react'
 
 const TabMenu = ({menuList, activeMenu, setActiveMenu}) => {
   return (
-    <div className='flex w-full text-dark font-semibold bg-white shadow-card rounded-[50px]'>
+    <div className='flex w-full text-lightText font-semibold bg-white border border-light rounded-lg'>
         {menuList.map((item, index) => (
         <div
             key={index}
-            className={`cursor-pointer flex-1 p-4 text-center rounded-[50px] ${
-            activeMenu === item.id && 'bg-softYellow text-dark '
+            className={`cursor-pointer flex-1 p-2 text-center rounded-lg ${
+            activeMenu === item.id && 'text-black border border-light'
             }`}
             onClick={() => setActiveMenu(item.id)}
         >

@@ -48,6 +48,10 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Workout'
     }],
+    lessonSessions: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'LessonSession'
+    }],
 },{ timestamps: true })
 
 userSchema.pre('save', async function (next) {

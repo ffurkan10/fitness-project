@@ -4,16 +4,22 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        marcellus: ['"Marcellus SC"', 'serif'],
+      },
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
       'white': '#ffffff',
       'yellow': '#FFB732',
       'background': '#FAFAFA',
+      'lightText': '#939393',
+      "cardBg": '#FFFFFF66',
       'black': '#000',
       'dark': '#3C3E40',
-      'light': '#6E7073',
+      'light': '#E6E6E6',
       'red': '#FF4647',
       'green': '#50B380',
       "blue":"#655DD3",

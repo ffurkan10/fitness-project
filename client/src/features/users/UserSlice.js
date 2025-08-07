@@ -36,6 +36,8 @@ export const addNewUser = createAsyncThunk("user/addNewUser", async(body, thunkA
     }
     catch(error){
         console.error("Error fetching user:", error);
+        thunkAPI.dispatch(showModal("result"));
+        thunkAPI.dispatch(setResultModalData({resultType: "error", message: "Bir hata oluştu."}));
         throw error;
     }
 })
@@ -54,6 +56,8 @@ export const deleteUser = createAsyncThunk("user/deleteUser", async(id, thunkAPI
     }
     catch(error){
         console.error("Error fetching user:", error);
+        thunkAPI.dispatch(showModal("result"));
+        thunkAPI.dispatch(setResultModalData({resultType: "error", message: "Bir hata oluştu."}));
         throw error;
     }
 })

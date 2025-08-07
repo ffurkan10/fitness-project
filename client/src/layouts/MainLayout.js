@@ -10,15 +10,10 @@ const MainLayout = () => {
 
   return (
     <>
-      <main className='min-h-screen flex bg-background'>
+      <main className='min-h-screen flex bg-background p-4'>
         <Sidebar />
 
-        <div 
-          onClick={() => {
-            dispatch(setActiveSelect(""))
-          }} 
-          className='flex-1 ml-80 p-5'
-        >
+        <div onClick={() => {dispatch(setActiveSelect(""))}} className='w-[calc(100%-300px)] ml-[300px] '>
           <div className='w-full h-full'>
             <Outlet />
           </div>

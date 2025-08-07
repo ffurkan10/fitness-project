@@ -8,6 +8,7 @@ import NutritionAddModal from '../components/modals/nutritionModals/NutritionAdd
 import NutritionUpdateModal from '../components/modals/nutritionModals/NutritionUpdateModal';
 import BodyFeatureAddModal from '../components/modals/bodyFeatureModals/BodyFeatureAddModal';
 import BodyFeatureUpdateModal from '../components/modals/bodyFeatureModals/BodyFeatureUpdateModal';
+import LessonScheduleModal from '../components/modals/membershipModals/LessonScheduleModal';
 
 const ModalLayout = () => {
 
@@ -25,6 +26,8 @@ const ModalLayout = () => {
 
         {modalType === "addMembership" && <MembershipAddModal />}
         {modalType === "updateMembership" && <MembershipUpdateModal />}
+
+        {modalType === "lessonSchedule" && <LessonScheduleModal />}
 
         {modalType === "addNutrition" && <NutritionAddModal />}
         {modalType === "updateNutrition" && <NutritionUpdateModal />}

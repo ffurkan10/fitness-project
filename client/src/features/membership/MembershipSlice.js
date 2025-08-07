@@ -23,6 +23,8 @@ export const createMembership = createAsyncThunk("membership/createMembership", 
     }
     catch(error){
         console.error("Error fetching stats:", error);
+        thunkAPI.dispatch(showModal("result"));
+        thunkAPI.dispatch(setResultModalData({resultType: "error", message: "Bir hata oluştu."}));
         throw error;
     }
 })
@@ -40,6 +42,8 @@ export const updateMembership = createAsyncThunk("membership/updateMembership", 
     }
     catch(error){
         console.error("Error fetching stats:", error);
+        thunkAPI.dispatch(showModal("result"));
+        thunkAPI.dispatch(setResultModalData({resultType: "error", message: "Bir hata oluştu."}));
         throw error;
     }
 })

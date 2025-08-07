@@ -20,7 +20,7 @@ const UserCard = ({data}) => {
   const daysLeft = endDate.diff(today, 'days');
 
   return (
-    <div className='grid grid-cols-6 items-center gap-2 shadow-card rounded-md py-5'>
+    <div className='grid grid-cols-6 items-center gap-2 border border-light p-4 hover:bg-light transition duration-300'>
         <div className='text-dark text-sm font-semibold text-center'>{data.name}</div>
         <div className='text-dark text-sm font-semibold text-center'>{data.phoneNumber}</div>
         <div className='text-dark text-sm font-semibold text-center'>{data?.membership ? moment(data?.membership?.startDate).format("DD.MM.YYYY") : ""}</div>

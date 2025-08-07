@@ -23,6 +23,8 @@ export const createNutrition = createAsyncThunk("nutrition/createNutrition", asy
     }
     catch(error){
         console.error("Error fetching stats:", error);
+        thunkAPI.dispatch(showModal("result"));
+        thunkAPI.dispatch(setResultModalData({resultType: "error", message: "Bir hata oluştu."}));
         throw error;
     }
 })
@@ -39,6 +41,8 @@ export const updateNutrition = createAsyncThunk("nutrition/updateNutrition", asy
         return data.data;
     }
     catch(error){
+        thunkAPI.dispatch(showModal("result"));
+        thunkAPI.dispatch(setResultModalData({resultType: "error", message: "Bir hata oluştu."}));
         console.error("Error fetching stats:", error);
         throw error;
     }

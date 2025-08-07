@@ -41,8 +41,9 @@ const SpecialNotificationForm = () => {
         <InputSelectUser data={selectedUser?.name} setData={setSelectedUser} initialOptions={allUsers} labelText={"Bildirim Gönderilecek Kişi"} name={"selectedUser"} width={"100%"} />
         <InputText data={data.title} setData={(e) => handleInputChange(e)} name={"title"} labelText={"Bildirim Başlığı"} width={"100%"} />
         <InputTextarea data={data.content} setData={(e) => handleInputChange(e)} name={"content"} labelText={"Bildirim İçeriği"} width={"100%"} />
-        <Button text={"Gönder"} width={"200px"} handleClick={handleSubmit} />
-
+        <div className='flex justify-end w-full'>
+          <Button text={"Gönder"} width={"200px"} handleClick={handleSubmit} />
+        </div>
     </div>
   )
 }

@@ -9,7 +9,7 @@ const InputText = ({data, setData, name, width, labelText}) => {
         name={name}
         value={data}
         onChange={setData}
-        className="w-full border border-dark rounded-lg p-2 w-1/3 focus:outline-none focus:ring-1 focus:ring-dark transition duration-300"
+        className="w-full border border-light rounded-lg p-2 w-1/3 focus:outline-none"
       />
     </div>
   )

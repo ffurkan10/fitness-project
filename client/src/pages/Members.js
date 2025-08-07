@@ -4,6 +4,7 @@ import { getAllUsers } from '../features/users/UserSlice';
 import AddUserButton from '../components/ui/buttons/AddUserButton';
 import InputText from '../components/ui/inputs/InputText';
 import UserCard from '../components/ui/cards/UserCard';
+import QuickAccess from '../components/dashboard/QuickAccess';
 
 const titles = ["Ad Soyad", "Telefon Numarası", "Üyelik Tarihi", "Üyelik Bitiş Tarihi", "Üyelik Durumu", "İşlemler"];
 
@@ -20,15 +21,17 @@ const Members = () => {
   return (
     <div className='flex flex-col items-center h-screen'>
 
-      <div className='flex items-center justify-between w-full'>
+      <QuickAccess isMemberPage={true} />
+
+      {/* <div className='flex items-center justify-between w-full'>
         <InputText width={"200px"} labelText={"İsme Göre Ara"} name={"searchTerm"} setData={(e) => setSearchTerm(e.target.value)} data={searchTerm} />
         <AddUserButton />
-      </div>
+      </div> */}
 
       <div className='flex flex-col items-center w-full h-full mt-10'>
         {allUsers && allUsers.length > 0 ? (
             <div className='w-full' >
-              <div className='grid grid-cols-6 gap-2 pb-4'>
+              <div className='grid grid-cols-6 align-center justify-center gap-2 p-4 bg-light rounded-t-[20px]'>
                 {titles.map((title, index) => (
                   <div key={index} className='text-dark text-sm font-semibold text-center'>
                     {title}
@@ -36,7 +39,7 @@ const Members = () => {
                 ))}
               </div>
 
-              <div className='flex flex-col gap-4 mt-4'>
+              <div className='flex flex-col'>
                 {allUsers.map((item, index) => (
                   <UserCard data={item} key={index} />
                 ))}

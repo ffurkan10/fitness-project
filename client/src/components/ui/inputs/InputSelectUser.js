@@ -40,12 +40,12 @@ const InputSelectUser = ({data, setData, name, width, labelText, initialOptions}
             value={data || ""}
             name={name}
             onClick={() => dispatch(setActiveSelect((activeSelect && activeSelect === name) ? "" : name))}
-            className="w-full border border-dark rounded-lg p-2 w-full flex justify-between items-center"
+            className="w-full border border-light rounded-lg p-2 w-full flex justify-between items-center"
         />
         <FaChevronRight className={`absolute right-3 top-10 text-dark transition-transform duration-300 ${activeSelect === name ? 'rotate-90' : ''}`} />
         {
           activeSelect === name &&
-          <div className="absolute top-full left-0 right-0 bg-white border border-dark rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto">
+          <div className="absolute top-full left-0 right-0 bg-white border border-light rounded-lg shadow-lg z-10 max-h-60 overflow-y-auto">
             {
               options.map((item) => (
                 <div key={item.id} className="w-full py-2 px-4 text-sm font-medium text-dark cursor-pointer hover:bg-background" onClick={() => handleOptionClick(item)}>

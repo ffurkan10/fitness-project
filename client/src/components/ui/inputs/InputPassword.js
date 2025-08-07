@@ -10,7 +10,7 @@ const InputPassword = ({data, setData, name, width, labelText, showPassword, typ
             name={name}
             value={data}
             onChange={setData}
-            className="w-full relative border border-dark rounded-lg p-2 w-1/3 focus:outline-none focus:ring-1 focus:ring-dark transition duration-300"
+            className="w-full relative border border-light rounded-lg p-2 w-1/3 focus:outline-none"
         />
         {isShow ?
                 <FaEyeSlash className="absolute right-3 top-12 transform -translate-y-1/2 cursor-pointer" onClick={showPassword} />

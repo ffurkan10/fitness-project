@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllUsers } from '../features/users/UserSlice'
 import { getAllNotifications } from '../features/notification/NotificationSlice'
 import NotificationCard from '../components/ui/cards/NotificationCard'
+import QuickAccess from '../components/dashboard/QuickAccess'
 
 const menuList = [
   { id: 1, name: 'Global Bildirim Gönder' },
@@ -26,22 +27,28 @@ const Notifications = () => {
 
   return (
     <div className='flex flex-col items-center h-full'>
-      <TabMenu menuList={menuList} activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
 
-      {activeMenu === 1 && <GlobalNotificationForm />}
-      {activeMenu === 2 && <SpecialNotificationForm /> }
+      <QuickAccess isMemberPage={false} />
 
-      <div className='flex flex-col items-center w-full max-w-2xl mt-10'>
-        <div className='text-2xl font-bold text-dark mb-4'>Geçmiş Bildirimler</div>
+      <div className='flex justify-between align-center w-full gap-10 mt-10'>
+        <div className='flex flex-col items-center justify-start w-1/2'>
+          <TabMenu menuList={menuList} activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
 
-        <div className='w-full'>
-          {allNotifications.length > 0 ? (
-            allNotifications.map((notification, index) => (
-              <NotificationCard data={notification} key={index} />
-            ))
-          ) : (
-            <div className='text-gray-500'>Henüz bildirim yok.</div>
-          )}
+          {activeMenu === 1 && <GlobalNotificationForm />}
+          {activeMenu === 2 && <SpecialNotificationForm /> }
+        </div>
+
+        <div className='flex flex-col items-center w-1/2 '>
+          <div className='text-md text-center font-bold text-dark p-4 bg-light rounded-t-[20px] w-full'>Geçmiş Bildirimler</div>
+          <div className='w-full overflow-y-auto h-[calc(100vh-200px)] flex flex-col'>
+            {allNotifications.length > 0 ? (
+              allNotifications.map((notification, index) => (
+                <NotificationCard data={notification} key={index} />
+              ))
+            ) : (
+              <div className='text-gray-500'>Henüz bildirim yok.</div>
+            )}
+          </div>
         </div>
       </div>
     </div>

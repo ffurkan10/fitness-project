@@ -13,12 +13,12 @@ const Home = () => {
       <div className='w-full mt-10 bg-background'>
         <div className='flex justify-between items-center gap-5'>
 
-          <div className='w-1/2 h-auto flex flex-col justify-between gap-5 mt-5 rounded-lg p-5 bg-white shadow-card'>
+          <div className='w-1/2 h-auto flex flex-col justify-between gap-5 mt-5 rounded-lg p-5 bg-white border border-light'>
             <div className='text-lg font-semibold text-dark'>Üye Dağılımı</div>
             <LineChart />
           </div>
         
-          <div className='w-1/2 h-auto flex flex-col justify-between gap-5 mt-5 rounded-lg p-5 bg-white shadow-card'>
+          <div className='w-1/2 h-auto flex flex-col justify-between gap-5 mt-5 rounded-lg p-5 bg-white border border-light'>
             <div className='text-lg font-semibold text-dark'>Aylık Gelir Dağılımı</div>
             <BarChart />
           </div>
@@ -26,12 +26,12 @@ const Home = () => {
 
         <div className='flex justify-between items-center gap-5 mt-5'>
 
-          <div className='w-1/3 h-auto flex flex-col justify-between gap-5 mt-5 rounded-lg p-5 bg-white shadow-card'>
+          <div className='w-1/3 h-auto flex flex-col justify-between gap-5 mt-5 rounded-lg p-5 bg-white border border-light'>
             <div className='text-lg font-semibold text-dark'>Cinsiyet Dağılımı</div>
             <Pie />
           </div>
 
-          <div className='w-1/3 h-auto flex flex-col justify-between gap-5 mt-5 rounded-lg p-5 bg-white shadow-card'>
+          <div className='w-1/3 h-auto flex flex-col justify-between gap-5 mt-5 rounded-lg p-5 bg-white border border-light'>
             <div className='text-lg font-semibold text-dark'>Ders Tipi Dağılımı</div>
             <DoughnutChart />
           </div>

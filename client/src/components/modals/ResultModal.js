@@ -25,9 +25,13 @@ const ResultModal = () => {
     <div className="fixed top-0 right-0 bottom-0 left-0 bg-black/60 flex justify-center items-center z-[9999] shadow-lg">
       <div className="w-[600px] h-auto p-5 rounded-lg flex flex-col justify-center items-center bg-white gap-5">
         {resultModalData.resultType === "success" ? (
-          <FaCheck className="" />
+          <div className="w-16 h-16 bg-green rounded-full flex justify-center items-center">
+            <FaCheck className="" />
+          </div>
         ) : (
-          <IoMdClose className="" />
+          <div className="w-16 h-16 bg-red rounded-full flex justify-center items-center">
+            <IoMdClose className="" />
+          </div>
         )}
         <p>{resultModalData.message}</p>
         <Button text={"Kapat"} />

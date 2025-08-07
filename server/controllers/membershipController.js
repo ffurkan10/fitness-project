@@ -22,7 +22,7 @@ exports.createMembership = catchAsync(async (req, res, next) => {
 
     res.status(201).json({
         status: 'success',
-        ata: newMembership
+        data: newMembership
     });
 });
 

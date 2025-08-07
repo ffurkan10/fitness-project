@@ -8,6 +8,7 @@ import nutritionReducer from "../features/nutrition/NutritionSlice";
 import bodyFeatureReducer from "../features/body/BodyFeatureSlice";
 import authReducer from "../features/auth/AuthSlice";
 import notificationReducer from "../features/notification/NotificationSlice";
+import lessonReducer from "../features/lesson/lessonSlice";
 
 const Store = configureStore({
   reducer: {
@@ -19,7 +20,8 @@ const Store = configureStore({
     nutrition: nutritionReducer,
     bodyFeature: bodyFeatureReducer,
     auth: authReducer,
-    notification: notificationReducer
+    notification: notificationReducer,
+    lesson: lessonReducer
   },
 });
 

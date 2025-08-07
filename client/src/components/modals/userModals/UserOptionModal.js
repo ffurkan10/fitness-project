@@ -45,6 +45,7 @@ const UserOptionModal = () => {
                         dispatch(showModal("addMembership"))
                     }} text={"Üyelik Bilgileri"} 
                 />
+                <Button handleClick={() => dispatch(showModal("lessonSchedule"))} text={"Ders Saatleri"} />
                 <Button handleClick={() => {
                     selectedUser?.bodyFeatures ?
                         dispatch(showModal("updateBodyFeature"))

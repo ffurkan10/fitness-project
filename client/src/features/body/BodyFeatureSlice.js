@@ -22,6 +22,8 @@ export const createBodyFeatures = createAsyncThunk("bodyFeature/createBodyFeatur
         return data.data;
     }
     catch(error){
+        thunkAPI.dispatch(showModal("result"));
+        thunkAPI.dispatch(setResultModalData({resultType: "error", message: "Bir hata oluştu."}));
         console.error("Error fetching stats:", error);
         throw error;
     }
@@ -40,6 +42,8 @@ export const updateBodyFeatures = createAsyncThunk("bodyFeature/updateBodyFeatur
     }
     catch(error){
         console.error("Error fetching stats:", error);
+        thunkAPI.dispatch(showModal("result"));
+        thunkAPI.dispatch(setResultModalData({resultType: "error", message: "Bir hata oluştu."}));
         throw error;
     }
 })

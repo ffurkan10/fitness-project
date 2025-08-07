@@ -34,6 +34,8 @@ export const sendNotification = createAsyncThunk("notification/sendNotification"
     }
     catch(error){
         console.error("Error fetching stats:", error);
+        thunkAPI.dispatch(showModal("result"));
+        thunkAPI.dispatch(setResultModalData({resultType: "error", message: "Bir hata oluştu."}));
         throw error;
     }
 })

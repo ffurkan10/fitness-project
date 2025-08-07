@@ -11,6 +11,7 @@ const workoutRouter = require("./routes/workoutRoutes");
 const notificationRouter = require("./routes/notificationRoutes");
 const snapshotRouter = require("./routes/userCountSnapshotRoutes");
 const adminUserRouter = require("./routes/adminUserRoutes");
+const lessonSessionRouter = require("./routes/lessonSessionRoutes");
 
 const app = express();
 
@@ -56,6 +57,7 @@ app.use("/api/fitness/v1/nutrition", nutritionRouter);
 app.use("/api/fitness/v1/workout", workoutRouter);
 app.use("/api/fitness/v1/notification", notificationRouter);
 app.use("/api/fitness/v1/snapshot", snapshotRouter);
+app.use("/api/fitness/v1/lesson", lessonSessionRouter);
 
 app.all("*", (req, res, next) => {
   const err = new Error(`Bu URL bulunamadı: ${req.originalUrl}`);
