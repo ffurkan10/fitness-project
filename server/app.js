@@ -15,22 +15,16 @@ const lessonSessionRouter = require("./routes/lessonSessionRoutes");
 
 const app = express();
 
-const allowedOrigins = ['http://localhost:3000'];
+app.use(cors({
+  origin: 'https://your-frontend-domain.vercel.app',
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  credentials: true            // eğer cookie / yetkilendirme header’ı kullanıyorsanız
+}));
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(null, false);
-    }
-  },
-  credentials: true,
-  methods: "GET,POST,PUT,DELETE,OPTIONS"
-};
-
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
+app.options('*', cors({
+  origin: 'https://your-frontend-domain.vercel.app',
+  credentials: true
+}));
 
 app.use(morgan("dev"));
 
