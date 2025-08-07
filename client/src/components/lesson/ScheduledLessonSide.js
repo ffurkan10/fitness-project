@@ -94,7 +94,7 @@ const ScheduledLessonSide = () => {
                                     <label className='text-dark text-sm font-semibold'>Uygun Saatler</label>
                                     <div className='grid grid-cols-4 gap-2'>
                                         {availableTimeSlots.map((slot, index) => (
-                                            <div key={index} onClick={() => setSelectedTimeSlot(slot)} className={`p-2 text-md font-semibold text-center border rounded-md cursor-pointer ${selectedTimeSlot === slot ? 'bg-light text-white' : 'bg-dark text-white'}`}>
+                                            <div key={index} onClick={() => setSelectedTimeSlot(slot)} className={`p-2 text-md font-semibold text-center border rounded-md cursor-pointer ${selectedTimeSlot === slot ? 'bg-dark text-white' : 'bg-black text-white'}`}>
                                                 {slot}
                                             </div>
                                         ))}
