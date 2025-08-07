@@ -16,13 +16,13 @@ const lessonSessionRouter = require("./routes/lessonSessionRoutes");
 const app = express();
 
 app.use(cors({
-  origin: 'https://your-frontend-domain.vercel.app',
+  origin: 'https://fitness-project-sigma.vercel.app/',
   methods: ['GET','POST','PUT','DELETE','OPTIONS'],
   credentials: true            // eğer cookie / yetkilendirme header’ı kullanıyorsanız
 }));
 
 app.options('*', cors({
-  origin: 'https://your-frontend-domain.vercel.app',
+  origin: 'https://fitness-project-sigma.vercel.app/',
   credentials: true
 }));
 
