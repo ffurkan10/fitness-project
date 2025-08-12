@@ -26,7 +26,8 @@ const UserCard = ({data}) => {
         <div className='text-dark text-sm font-semibold text-center'>{data?.membership ? moment(data?.membership?.startDate).format("DD.MM.YYYY") : ""}</div>
         <div className='text-center relative'>
           <p className='text-dark text-sm font-semibold '>{data?.membership ? moment(data?.membership?.endDate).format("DD.MM.YYYY") : ""}</p>
-          {data?.membership && daysLeft < 3 && <span className='absolute text-xs font-medium text-red right-9 top-5'>Üyelik tarihi bitiyor!</span> }
+          {data?.membership && daysLeft < 3 && daysLeft > 0 && <span className='absolute text-xs font-medium text-red right-9 top-5'>Üyelik tarihi bitiyor!</span> }
+          {data?.membership && daysLeft < 0 && <span className='absolute text-xs font-medium text-red right-9 top-5'>Üyelik tarihi bitmiş!</span> }
         </div>
         <div className='text-sm font-semibold text-center'>{data?.membership ? data?.membership?.isActive ? <span className='text-yellow'>Aktif</span> : <span className='text-red'>Pasif</span> : ""}</div>
         <div className='flex items-center justify-center'>

@@ -13,7 +13,7 @@ const initialState = {
 
 export const login = createAsyncThunk("auth/login", async(body, thunkAPI) => {
     try{
-        const { data } = await axios.post(`https://fitness-project-pswv.onrender.com/api/fitness/v1/panelUser/adminLogin`, body);
+        const { data } = await axiosInstance.post(`/panelUser/adminLogin`, body);
 
         if(data.status === "success"){
             const payload = jwtDecode(data.token)
