@@ -28,10 +28,12 @@ export const createMembership = createAsyncThunk("membership/createMembership", 
         throw error;
     }
 })
-
-export const updateMembership = createAsyncThunk("membership/updateMembership", async(body, thunkAPI) => {
+ 
+export const updateMembership = createAsyncThunk("membership/updateMembership", async({id, body}, thunkAPI) => {
     try{
-        const { data } = await axiosInstance.patch(`/membership/`, body);
+        console.log(id, body);
+
+        const { data } = await axiosInstance.patch(`/membership/${id}`, body);
 
         if(data.status === "success"){
             thunkAPI.dispatch(showModal("result"));

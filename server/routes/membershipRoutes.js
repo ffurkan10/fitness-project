@@ -8,7 +8,7 @@ const router = express.Router()
 router.get("/:id", protectMiddleware.protectUserOrAdmin, membershipController.getUserMembership) 
 
 router.post("/", adminAuthController.protectAdmin, membershipController.createMembership) 
-router.patch("/", adminAuthController.protectAdmin, membershipController.updateMembership) 
-router.delete("/", adminAuthController.protectAdmin, membershipController.deleteMembership) 
+router.patch("/:id", adminAuthController.protectAdmin, membershipController.updateMembership) 
+router.delete("/:id", adminAuthController.protectAdmin, membershipController.deleteMembership) 
 
 module.exports = router

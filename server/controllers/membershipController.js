@@ -36,7 +36,8 @@ exports.getUserMembership = async (req, res, next) => {
 };
 
 exports.updateMembership = catchAsync(async (req, res, next) => {
-    const updatedMembership = await Membership.findByIdAndUpdate(req.params.id, req.body, {
+    const { id } = req.params;
+    const updatedMembership = await Membership.findByIdAndUpdate(id, req.body, {
         new: true,
         runValidators: true
     });

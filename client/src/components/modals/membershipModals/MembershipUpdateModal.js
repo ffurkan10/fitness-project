@@ -85,8 +85,8 @@ const MembershipUpdateModal = () => {
             startDate: data.startDate,
             endDate: data.endDate,
         }
-        dispatch(updateMembership(membershipData));
-        
+        dispatch(updateMembership({id: userMembership?._id, body: membershipData}));
+
     }
 
     return (
