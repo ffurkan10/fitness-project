@@ -17,7 +17,7 @@ const app = express();
 
 app.use(cors({
   origin: 'https://fitness-project-sigma.vercel.app',
-  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  methods: ['GET','POST','PUT', 'PATCH','DELETE','OPTIONS'],
   credentials: true
 }));
 
