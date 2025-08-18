@@ -3,6 +3,7 @@ const AppError = require('../utils/appError');
 const Notification = require("../models/notificationModel")
 const User = require("../models/userModel");
 const { getIO } = require("../socket");
+const { sendPushNotification } = require('../middlewares/pushNotification');
 
 exports.createNotification = catchAsync(async (req, res, next) => {
   const { title, message, userId, isGlobal } = req.body;

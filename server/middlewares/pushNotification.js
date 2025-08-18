@@ -1,4 +1,4 @@
-const sendPushNotification = async (expoPushToken, title, message) => {
+export const sendPushNotification = async (expoPushToken, title, message) => {
   if (!expoPushToken?.startsWith('ExponentPushToken')) return;
   
   await fetch('https://exp.host/--/api/v2/push/send', {
@@ -13,4 +13,3 @@ const sendPushNotification = async (expoPushToken, title, message) => {
     }),
   });
 };
-export default sendPushNotification
