@@ -105,6 +105,45 @@ exports.deleteUser = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.changePassword = catchAsync(async (req, res, next) => {
+  const { currentPassword, newPassword, confirmPassword } = req.body;
+
+  // Validate input
+  if (!currentPassword || !newPassword || !confirmPassword) {
+    return next(new AppError('Lütfen mevcut şifre, yeni şifre ve onay şifresini girin.', 400));
+  }
+
+  if (newPassword !== confirmPassword) {
+    return next(new AppError('Yeni şifre ve onay şifresi eşleşmiyor!', 400));
+  }
+
+  // Find user
+  const user = await User.findById(req.user.id).select('+password');
+  if (!user || !(await user.correctPassword(currentPassword, user.password))) {
+    return next(new AppError('Geçersiz mevcut şifre!', 401));
+  }
+
+  // Update password
+  user.password = newPassword;
+  user.passwordConfirm = confirmPassword;
+  await user.save();
+
+  res.status(200).json({
+    status: 'success',
+    message: 'Şifre başarıyla değiştirildi.'
+  });
+});
+
+exports.pushToken = catchAsync(async (req, res, next) => {
+  const { pushToken } = req.body;
+  const userId = req.user.id;
+  if (!pushToken) {
+    return next(new AppError('Lütfen bir push token girin.', 400));
+  }
+  await User.findByIdAndUpdate(userId, { pushToken }); // Token'ı veritabanına kaydet
+  res.send({ success: true });
+})
+
 exports.getGenderStats = catchAsync(async (req, res, next) => {
   const genders = await User.aggregate([
     {

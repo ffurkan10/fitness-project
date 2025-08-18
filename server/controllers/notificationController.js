@@ -1,6 +1,7 @@
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const Notification = require("../models/notificationModel")
+const User = require("../models/userModel");
 const { getIO } = require("../socket");
 
 exports.createNotification = catchAsync(async (req, res, next) => {
@@ -23,6 +24,12 @@ exports.createNotification = catchAsync(async (req, res, next) => {
             message,
             isGlobal: true
         });
+
+        const usersWithToken = await User.find({ pushToken: { $exists: true, $ne: null } });
+        for (const user of usersWithToken) {
+            await sendPushNotification(user.pushToken, title, message);
+        }
+
     } else {
         console.log(`Notification sent to user ${userId}: ${title}`);
         io.to(userId).emit("newNotification", {
@@ -30,6 +37,11 @@ exports.createNotification = catchAsync(async (req, res, next) => {
             message,
             isGlobal: false
         });
+
+        const user = await User.findById(userId);
+        if (user?.pushToken) {
+            await sendPushNotification(user.pushToken, title, message);
+        }
     }
 
     res.status(201).json({

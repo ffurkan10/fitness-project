@@ -32,6 +32,9 @@ const userSchema = new mongoose.Schema({
             }
         }
     },
+    pushToken: {
+        type: String
+    },
     membership: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Membership'
