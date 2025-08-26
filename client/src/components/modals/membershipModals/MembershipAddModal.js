@@ -11,6 +11,11 @@ import { groupPackageTypes, singlePackageTypes } from '../../../utils/packageTyp
 import InputDate from '../../ui/inputs/InputDate';
 import { createMembership } from '../../../features/membership/MembershipSlice';
 
+const paidTypes = [
+    { id: 1, text: "Ödendi", type: true },
+    { id: 2, text: "Ödenmedi", type: false },
+]
+
 const MembershipAddModal = () => {
 
     const dispatch = useDispatch();
@@ -28,6 +33,7 @@ const MembershipAddModal = () => {
 
     const [courseType, setCourseType] = useState(null);
     const [packageType, setPackageType] = useState(null);
+    const [paidType, setPaidType] = useState(null);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -66,6 +72,7 @@ const MembershipAddModal = () => {
             isActive: true,
             startDate: data.startDate,
             endDate: data.endDate,
+            isPaid: paidType?.type
         }
         dispatch(createMembership(membershipData));
         
@@ -82,6 +89,7 @@ const MembershipAddModal = () => {
                     <InputSelect data={packageType} setData={setPackageType} name={"packageType"} initialOptions={courseType?.id === 1 ? singlePackageTypes : groupPackageTypes} width={"100%"} labelText={"Paket Adı"} />
                     <InputText data={data?.remainingCourses} setData={(e) => handleInputChange(e)} name={"remainingCourses"} width={"100%"} labelText={"Kalan Ders Sayısı"} />
                     <InputText data={data?.price} setData={(e) => handleInputChange(e)} name={"price"} width={"100%"} labelText={"Ücret"} />
+                    <InputSelect data={paidType} setData={setPaidType} name={"paidType"} initialOptions={paidTypes} width={"100%"} labelText={"Ödeme Durumu"} />
                     <InputDate data={data?.startDate} setData={(e) => handleInputChange(e)} name={"startDate"} width={"100%"} labelText={"Başlangıç Tarihi"} />
                     <InputDate data={data?.endDate} setData={(e) => handleInputChange(e)} name={"endDate"} width={"100%"} labelText={"Bitiş Tarihi"} />
                 </div>

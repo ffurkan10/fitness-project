@@ -18,6 +18,10 @@ const membershipSchema = new mongoose.Schema({
     price: {
         type: String
     },
+    isPaid: {
+        type: Boolean,
+        default: false
+    },
     isActive: {
         type: Boolean,
     },

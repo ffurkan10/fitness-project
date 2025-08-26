@@ -14,6 +14,11 @@ import moment from 'moment';
 import 'moment/locale/tr';
 moment.locale('tr');
 
+const paidTypes = [
+    { id: 1, text: "Ödendi", type: true },
+    { id: 2, text: "Ödenmedi", type: false },
+]
+
 const MembershipUpdateModal = () => {
 
     const dispatch = useDispatch();
@@ -32,6 +37,7 @@ const MembershipUpdateModal = () => {
 
     const [courseType, setCourseType] = useState(null);
     const [packageType, setPackageType] = useState(null);
+    const [paidType, setPaidType] = useState(null);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -55,8 +61,8 @@ const MembershipUpdateModal = () => {
             });
             setCourseType(courseTypes.find((type) => type.id === userMembership.courseType));
             setPackageType(userMembership.courseType === 1 ? singlePackageTypes?.find(item => item.id === userMembership.packageType) : groupPackageTypes?.find(item => item.id === userMembership.packageType));
+            setPaidType(paidTypes.find((type) => type.type === userMembership.isPaid));
         }
-
     }, [userMembership]);
 
     useEffect(() => {
@@ -86,7 +92,6 @@ const MembershipUpdateModal = () => {
             endDate: data.endDate,
         }
         dispatch(updateMembership({id: userMembership?._id, body: membershipData}));
-
     }
 
     return (
@@ -100,6 +105,7 @@ const MembershipUpdateModal = () => {
                     <InputSelect data={packageType} setData={setPackageType} name={"packageType"} initialOptions={courseType?.id === 1 ? singlePackageTypes : groupPackageTypes} width={"100%"} labelText={"Paket Adı"} />
                     <InputText data={data?.remainingCourses} setData={(e) => handleInputChange(e)} name={"remainingCourses"} width={"100%"} labelText={"Kalan Ders Sayısı"} />
                     <InputText data={data?.price} setData={(e) => handleInputChange(e)} name={"price"} width={"100%"} labelText={"Ücret"} />
+                    <InputSelect data={paidType} setData={setPaidType} name={"paidType"} initialOptions={paidTypes} width={"100%"} labelText={"Ödeme Durumu"} />
                     <InputDate data={data?.startDate} setData={(e) => handleInputChange(e)} name={"startDate"} width={"100%"} labelText={"Başlangıç Tarihi"} />
                     <InputDate data={data?.endDate} setData={(e) => handleInputChange(e)} name={"endDate"} width={"100%"} labelText={"Bitiş Tarihi"} />
                 </div>
