@@ -23,11 +23,6 @@ const Members = () => {
 
       <QuickAccess isMemberPage={true} />
 
-      {/* <div className='flex items-center justify-between w-full'>
-        <InputText width={"200px"} labelText={"İsme Göre Ara"} name={"searchTerm"} setData={(e) => setSearchTerm(e.target.value)} data={searchTerm} />
-        <AddUserButton />
-      </div> */}
-
       <div className='flex flex-col items-center w-full h-full mt-10'>
         {allUsers && allUsers.length > 0 ? (
             <div className='w-full' >

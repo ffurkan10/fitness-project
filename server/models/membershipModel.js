@@ -9,7 +9,7 @@ const membershipSchema = new mongoose.Schema({
         type: Number,
     },
     remainingCourse: {
-        type: String,
+        type: Number,
     },
     courseType: {
         type: Number, // örneğin 1: birebir, 2: grup

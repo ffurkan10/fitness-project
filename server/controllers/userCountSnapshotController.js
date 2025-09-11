@@ -66,10 +66,14 @@ cron.schedule('5 0 1 * *', takeMonthlyUserSnapshot);
 
 
 exports.getMonthlyStats = catchAsync(async (req, res, next) => {
-    const data = await UserCountSnapshot.find().sort({ month: 1 });
+  // ✅ createdAt’e göre sıralama (eskiden yeniye)
+  const data = await UserCountSnapshot.find().sort({ createdAt: 1 });
 
-    res.status(200).json({
-        status: 'success',
-        data
-    });
+  console.log("data", data);
+  
+
+  res.status(200).json({
+    status: 'success',
+    data
+  });
 });

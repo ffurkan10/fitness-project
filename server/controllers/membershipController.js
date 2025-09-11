@@ -5,7 +5,8 @@ const User = require("../models/userModel")
 
 exports.createMembership = catchAsync(async (req, res, next) => {
     const { userId, ...others } = req.body;
-
+    console.log("create membership",req.body);
+    
     const user = await User.findById(userId);
     if (!user) {
         return next(new AppError('Belirtilen kullanıcı bulunamadı.', 404));
@@ -37,6 +38,8 @@ exports.getUserMembership = async (req, res, next) => {
 
 exports.updateMembership = catchAsync(async (req, res, next) => {
     const { id } = req.params;
+    console.log("update membership",req.body);
+    
     const updatedMembership = await Membership.findByIdAndUpdate(id, req.body, {
         new: true,
         runValidators: true
@@ -53,6 +56,7 @@ exports.updateMembership = catchAsync(async (req, res, next) => {
         }
     });
 });
+
 
 exports.deleteMembership = catchAsync(async (req, res, next) => {
     const deletedMembership = await Membership.findByIdAndDelete(req.params.id);

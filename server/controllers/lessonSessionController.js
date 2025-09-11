@@ -37,18 +37,56 @@ exports.getUserLessons = catchAsync(async (req, res, next) => {
   res.status(200).json({ status: 'success', data: lessons });
 });
 
-exports.updateLesson = catchAsync(async (req, res, next) => {
-    const { id } = req.params;
-    const updatedLesson = await LessonSession.findByIdAndUpdate(id, req.body, {
-        new: true,
-        runValidators: true
-    });
+// exports.updateLesson = catchAsync(async (req, res, next) => {
+//     const { id } = req.params;
+//     const updatedLesson = await LessonSession.findByIdAndUpdate(id, req.body, {
+//         new: true,
+//         runValidators: true
+//     });
 
-    if (!updatedLesson) {
-        return next(new AppError('Ders bulunamadı.', 404));
+//     if (!updatedLesson) {
+//         return next(new AppError('Ders bulunamadı.', 404));
+//     }
+
+//     res.status(200).json({ status: 'success', data: updatedLesson });
+// });
+
+//! eğer ders tamamlandı veya iptal edildiyse kalan dersi eksiltme
+exports.updateLesson = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+  const { status } = req.body;
+  
+
+  //? Önce dersi güncelle
+  const updatedLesson = await LessonSession.findByIdAndUpdate(id, req.body, {
+    new: true,
+    runValidators: true
+  });
+
+  if (!updatedLesson) {
+    return next(new AppError('Ders bulunamadı.', 404));
+  }
+
+  //? Eğer status completed veya missed olarak güncellendiyse, ders hakkından 1 düş
+  if (['completed', 'missed'].includes(status)) {
+    const user = await User.findById(updatedLesson.userId).populate('membership');
+    if (!user || !user.membership) {
+      return next(new AppError('Kullanıcı veya üyelik bilgisi bulunamadı.', 404));
     }
 
-    res.status(200).json({ status: 'success', data: updatedLesson });
+    const membership = user.membership;
+
+    //? Sıfırın altına inmesini engelle
+    if (membership.remainingCourse > 0) {
+      membership.remainingCourse -= 1;
+      await membership.save();
+    }
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: updatedLesson
+  });
 });
 
 exports.deleteLesson = catchAsync(async (req, res, next) => {

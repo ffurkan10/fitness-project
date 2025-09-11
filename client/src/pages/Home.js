@@ -1,4 +1,3 @@
-import React from 'react'
 import QuickAccess from '../components/dashboard/QuickAccess'
 import Pie from '../components/ui/charts/Pie'
 import BarChart from '../components/ui/charts/Bar'
@@ -35,13 +34,6 @@ const Home = () => {
             <div className='text-lg font-semibold text-dark'>Ders Tipi Dağılımı</div>
             <DoughnutChart />
           </div>
-
-          {/* <div className='w-1/3 h-auto flex flex-col justify-between gap-5 mt-5 rounded-lg p-5 bg-white shadow-card'>
-            <div className='text-lg font-semibold text-dark'>Cinsiyet Dağılımı</div>
-            <Pie />
-          </div> */}
-
-          
         </div>
       </div>
     </section>

@@ -85,7 +85,7 @@ const MembershipUpdateModal = () => {
             userId: selectedUser?._id,
             packageType: packageType.id,
             courseType: courseType.id,
-            remainingCourse: data.remainingCourses,
+            remainingCourse: parseInt(data.remainingCourses),
             price: data.price,
             isActive: true,
             startDate: data.startDate,
