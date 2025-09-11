@@ -18,7 +18,6 @@ exports.createNotification = catchAsync(async (req, res, next) => {
     const io = getIO();
 
     if (isGlobal) {
-        console.log(`Global notification sent: ${title}`);
         
         io.emit("newNotification", {
             title,
@@ -32,7 +31,6 @@ exports.createNotification = catchAsync(async (req, res, next) => {
         }
 
     } else {
-        console.log(`Notification sent to user ${userId}: ${title}`);
         io.to(userId).emit("newNotification", {
             title,
             message,
@@ -98,9 +96,6 @@ exports.getUserNotifications = catchAsync(async (req, res, next) => {
 exports.markNotificationAsRead = catchAsync(async (req, res, next) => {
     const userId = req.user.id;
     const notificationId = req.params.id;
-
-    console.log(`Marking notification ${notificationId} as read for user ${userId}`);
-    
 
     const notification = await Notification.findById(notificationId);
     if (!notification) {

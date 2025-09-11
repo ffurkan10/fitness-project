@@ -13,7 +13,6 @@ export const fetchStats = createAsyncThunk("stats/fetchStats", async(_, thunkAPI
     try{
 
         const { data } = await axiosInstance.get(`/snapshot/`);
-        console.log(data);
         
         return data.data;
     }

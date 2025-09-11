@@ -33,8 +33,6 @@ exports.signUp = catchAsync(async (req, res, next) => {
 exports.login = catchAsync(async (req, res, next) => {
     const { phoneNumber, password } = req.body;
 
-    console.log(`Phone Number: ${phoneNumber}, Password: ${password}`);
-
     if(!phoneNumber || !password) {
         return next(new AppError('Please provide phoneNumber and password', 400));
     }
@@ -54,8 +52,6 @@ exports.login = catchAsync(async (req, res, next) => {
 })
 
 exports.userInformation = catchAsync(async (req, res, next) => {
-    
-    console.log(`User ID: ${req.user.id}`);
     
     const user = await User.findById(req.user.id).select("-password").populate("workouts").populate("nutrition", "totalKcal");
     if(!user) {

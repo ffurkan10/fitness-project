@@ -1,6 +1,7 @@
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const LessonSession = require("../models/lessonSessionModel");
+const User = require("../models/userModel");
 
 exports.createLesson = catchAsync(async (req, res, next) => {
   const { userId, date, time } = req.body;
@@ -56,7 +57,8 @@ exports.updateLesson = catchAsync(async (req, res, next) => {
   const { id } = req.params;
   const { status } = req.body;
   
-
+  console.log("Updating lesson ID:", id, "with data:", req.body);
+  
   //? Önce dersi güncelle
   const updatedLesson = await LessonSession.findByIdAndUpdate(id, req.body, {
     new: true,
@@ -69,7 +71,10 @@ exports.updateLesson = catchAsync(async (req, res, next) => {
 
   //? Eğer status completed veya missed olarak güncellendiyse, ders hakkından 1 düş
   if (['completed', 'missed'].includes(status)) {
+    console.log("Ders durumu tamamlandı veya kaçırıldı, kalan ders hakkı düşülüyor.");
+    
     const user = await User.findById(updatedLesson.userId).populate('membership');
+    console.log("Kullanıcı ve üyelik bilgisi:", user, user ? user.membership : null);
     if (!user || !user.membership) {
       return next(new AppError('Kullanıcı veya üyelik bilgisi bulunamadı.', 404));
     }
@@ -111,8 +116,6 @@ exports.getOccupiedSlots = async (req, res) => {
   const date = new Date(req.query.date);
   const nextDay = new Date(date);
   nextDay.setDate(date.getDate() + 1);
-
-  console.log({ date, nextDay })
 
   const lessons = await LessonSession.find({
     date: { $gte: date, $lt: nextDay },

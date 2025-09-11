@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from "react-router-dom";
 import { useScrollLock } from '../../../hooks/useScrollLock';
 import { showModal } from '../../../features/modal/ModalSlice';
-import Button from '../../ui/buttons/Button';
-import { createUserLesson, getOccupiedSlots, getUserLessons } from '../../../features/lesson/lessonSlice';
-import InputDate from '../../ui/inputs/InputDate';
-import { getAvailableTimeSlots } from '../../../utils/timeSlots';
 import TabMenu from '../../ui/TabMenu';
 import NewLessonSide from '../../lesson/NewLessonSide';
 import ScheduledLessonSide from '../../lesson/ScheduledLessonSide';

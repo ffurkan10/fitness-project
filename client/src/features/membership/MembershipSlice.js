@@ -31,7 +31,6 @@ export const createMembership = createAsyncThunk("membership/createMembership", 
  
 export const updateMembership = createAsyncThunk("membership/updateMembership", async({id, body}, thunkAPI) => {
     try{
-        console.log(id, body);
 
         const { data } = await axiosInstance.patch(`/membership/${id}`, body);
 

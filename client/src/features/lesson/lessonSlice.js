@@ -14,7 +14,6 @@ export const getOccupiedSlots = createAsyncThunk("notification/getOccupiedSlots"
     try{
 
         const { data } = await axiosInstance.get(`/lesson/occupiedSlots?date=${date}`);
-        console.log("Occupied slots data:", data);
         
         return data.data;
     }
@@ -28,7 +27,6 @@ export const getOccupiedSlots = createAsyncThunk("notification/getOccupiedSlots"
 export const getUserLessons = createAsyncThunk("notification/getUserLessons", async(userId, thunkAPI) => {
     try{
         const { data } = await axiosInstance.get(`/lesson/userLessons/${userId}`);
-        console.log("User lessons data:", data);
         
         return data.data;
     }
@@ -41,7 +39,6 @@ export const getUserLessons = createAsyncThunk("notification/getUserLessons", as
 export const createUserLesson = createAsyncThunk("notification/createUserLesson", async(lessonData, thunkAPI) => {
     try{
         const { data } = await axiosInstance.post(`/lesson/`, lessonData);
-        console.log("Created lesson data:", data);
         if(data.status === "success"){
             thunkAPI.dispatch(showModal("result"));
             thunkAPI.dispatch(setResultModalData({resultType: "success", message: "Başarılı bir şekilde eklendi."}));
