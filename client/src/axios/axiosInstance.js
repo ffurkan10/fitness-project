@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  // baseURL: "https://fitness-project-pswv.onrender.com/api/fitness/v1",
-  baseURL: "/api/fitness/v1",
+  baseURL: "https://fitness-project-pswv.onrender.com/api/fitness/v1",
+  // baseURL: "/api/fitness/v1",
   headers: {
   },
 });
@@ -20,7 +20,8 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Örn: token süresi dolduysa logout yap
+      localStorage.removeItem("token");
+      window.location.href = "/giris-yap";
     }
     return Promise.reject(error);
   }
