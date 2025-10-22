@@ -63,17 +63,17 @@ cron.schedule('5 0 * * *', async () => {
     //! 1️⃣ Üyelikleri pasif yap
     const result = await Membership.updateMany(
       { _id: { $in: expiredIds } },
-      { isActive: false }
+      { isActive: false, remainingCourse: 0, isPaid: false } 
     );
 
     //! 2️⃣ Kullanıcılardan bu üyelik bağlantılarını kaldır
-    const userResult = await User.updateMany(
-      { membership: { $in: expiredIds } },
-      { $unset: { membership: 1 } }
-    );
+    // const userResult = await User.updateMany(
+    //   { membership: { $in: expiredIds } },
+    //   { $unset: { membership: 1 } }
+    // );
 
     console.log(`[✔️ Cron] ${result.modifiedCount} üyelik pasife alındı.`);
-    console.log(`[✔️ Cron] ${userResult.modifiedCount} kullanıcıdan membership bağlantısı silindi.`);
+    // console.log(`[✔️ Cron] ${userResult.modifiedCount} kullanıcıdan membership bağlantısı silindi.`);
 
   } catch (err) {
     console.error('[❌ Cron Hata]:', err);
