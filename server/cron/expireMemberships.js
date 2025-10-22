@@ -43,7 +43,7 @@ console.log('✅ expireMemberships.js çağrıldı');
 //! 3. çözüm
 
 
-cron.schedule('* * * * *', async () => {
+cron.schedule('5 0 * * *', async () => {
   console.log('[CRON] expireMemberships.js yüklendi!');
 
   try {
